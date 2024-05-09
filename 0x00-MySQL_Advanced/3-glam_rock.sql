@@ -1,6 +1,6 @@
 -- bands
-SELECT band_name,
-       IFNULL(YEAR(2022) - CAST(SUBSTRING_INDEX(lifespan, '-', 1) AS UNSIGNED), 0) AS lifespan
+SELECT band_name, 
+       IF(split = 0, 2022 - formed, 2022 - split) AS lifespan
 FROM metal_bands
-WHERE FIND_IN_SET('Glam rock', main_style)
+WHERE main_style = 'Glam rock'
 ORDER BY lifespan DESC;
