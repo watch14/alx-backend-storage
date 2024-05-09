@@ -1,5 +1,11 @@
 -- meetings
-CREATE VIEW need_meeting AS
-SELECT name
-FROM students
-WHERE (score < 80 OR last_meeting IS NULL OR last_meeting < DATE_SUB(NOW(), INTERVAL 1 MONTH));
+DELIMITER //
+
+DROP FUNCTION IF EXISTS SafeDiv;
+CREATE FUNCTION SafeDiv (a INT, b INT)
+RETURNS FLOAT DETERMINISTIC
+BEGIN
+    RETURN (IF (b = 0, 0, a / b));
+END //
+
+DELIMITER;
