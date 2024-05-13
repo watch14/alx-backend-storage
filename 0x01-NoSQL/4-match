@@ -1,0 +1,2 @@
+// find spesific
+db.shool.find({"name": "Holberton school"})
