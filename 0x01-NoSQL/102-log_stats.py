@@ -29,4 +29,4 @@ if __name__ == "__main__":
     for index, ip_data in enumerate(top_ips, 1):
         ip = ip_data['_id']
         count = ip_data['count']
-        print(f"\t{index}. {ip}: {count}")
+        print(f"\t{ip}: {count}")
