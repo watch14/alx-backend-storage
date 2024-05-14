@@ -18,6 +18,7 @@ if __name__ == "__main__":
     stat = collection.count_documents({'method': 'GET', 'path': '/status'})
     print(f"{stat} status check")
 
+    print("IPs:")
     pipeline = [
             {"$group": {"_id": "$ip", "count": {"$sum": 1}}},
             {"$sort": {"count": -1}},
