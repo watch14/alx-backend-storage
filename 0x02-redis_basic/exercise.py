@@ -19,6 +19,7 @@ def count_calls(method: Callable) -> Callable:
 
     return wrapper
 
+
 def call_history(method: Callable) -> Callable:
     """ history """
     @wraps(method)
@@ -39,6 +40,7 @@ def call_history(method: Callable) -> Callable:
 
     return wrapper
 
+
 def replay(func: Callable) -> None:
     """history of calls of functions"""
     class_name = func.__qualname__.split('.')[0]
@@ -54,7 +56,6 @@ def replay(func: Callable) -> None:
         input_args_str = input_args.decode('utf-8')
         output_str = output.decode('utf-8')
         print(f"{func.__qualname__}(*{input_args_str}) -> {output_str}")
-
 
 
 class Cache():
