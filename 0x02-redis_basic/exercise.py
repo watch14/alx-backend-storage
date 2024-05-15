@@ -23,6 +23,7 @@ class Cache():
     def get(
             self, key: str, fn: Optional[Callable] = None
             ) -> Union[str, bytes, int, None]:
+        """ make the data to its origin type """
         data = self._redis.get(key)
         if data is None:
             return None
