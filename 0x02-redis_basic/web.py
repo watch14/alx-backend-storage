@@ -3,6 +3,7 @@
 import requests
 import redis
 
+
 def get_page(url: str) -> str:
     """ page """
     redis_conn = redis.Redis()
