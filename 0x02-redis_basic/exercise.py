@@ -12,6 +12,7 @@ def count_calls(method: Callable) -> Callable:
     """ count INCR """
     @wraps(method)
     def wrapper(self, *args, **kwargs):
+        """ wraper """
         key = method.__qualname__
         self._redis.incr(key)
         return method(self, *args, **kwargs)
