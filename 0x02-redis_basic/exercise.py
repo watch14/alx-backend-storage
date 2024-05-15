@@ -41,7 +41,7 @@ def call_history(method: Callable) -> Callable:
     return wrapper
 
 
-def replay(func: Callable) -> None:
+def replay(method: Callable) -> None:
     """history of calls of function"""
     name = method.__qualname__
     cache = redis.Redis()
