@@ -19,6 +19,26 @@ def count_calls(method: Callable) -> Callable:
 
     return wrapper
 
+def call_history(method: Callable) -> Callable:
+    """ history """
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        """ rap god """
+        class_name = self.__class__.__name__
+        method_name = method.__name__
+        input_key = f"{class_name}.{method_name}:inputs"
+        output_key = f"{class_name}.{method_name}:outputs"
+
+        self._redis.rpush(input_key, str(args))
+
+        output = method(self, *args, **kwargs)
+
+        self._redis.rpush(output_key, output)
+
+        return output
+
+    return wrapper
+
 class Cache():
     """ cache class """
     def __init__(self):
@@ -27,6 +47,7 @@ class Cache():
         self._redis.flushdb()
 
     @count_calls
+    @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """store date """
         key = str(uuid.uuid4())
