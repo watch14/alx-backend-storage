@@ -42,7 +42,7 @@ def call_history(method: Callable) -> Callable:
 
 
 def replay(func: Callable) -> None:
-    """history of calls of functions"""
+    """history of calls of function"""
     class_name = func.__qualname__.split('.')[0]
     method_name = func.__name__
     input_key = f"{class_name}.{method_name}:inputs"
