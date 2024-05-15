@@ -30,3 +30,12 @@ class Cache():
         if fn is not None:
             return fn(data)
         return data
+
+    def get_int(self, key):
+        """ get int """
+        return self.get(key, int)
+
+    def get_str(self, key):
+        """ get str """
+        val = self._redis.get(key)
+        return val.decode('utf-8')
